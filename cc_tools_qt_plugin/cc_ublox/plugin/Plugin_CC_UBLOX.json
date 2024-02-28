@@ -1,0 +1,7 @@
+{
+    "name" : "CC UBLOX Protocol",
+    "desc" : [
+        "UBX protocol used by the U-blox GNSS Receivers."
+    ],
+    "type" : "protocol"
+}
