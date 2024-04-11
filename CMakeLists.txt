@@ -1,7 +1,10 @@
 cmake_minimum_required (VERSION 3.10)
 project ("cc_ublox_cc_tools_qt_plugin")
 
-# Configuration variables
+# Build options:
+option (OPT_INSTALL_DEFAULT_CONFIG "Install default plugin configuration" ON)
+
+# Configuration variables:
 # OPT_QT_MAJOR_VERSION - The major Qt version, defaults to 5
 
 ######################################################################
@@ -514,10 +517,11 @@ function (cc_plugin protocol has_config_widget)
         TARGETS ${name}
         DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR}/cc_tools_qt/plugin)
 
-    install (
-        FILES cc_tools_qt_plugin/cc_ublox/plugin/${protocol}.cfg
-        DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/cc_tools_qt)
-
+    if (OPT_INSTALL_DEFAULT_CONFIG)
+        install (
+            FILES cc_tools_qt_plugin/cc_ublox/plugin/${protocol}.cfg
+            DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/cc_tools_qt)
+    endif()
 endfunction()
 
 ######################################################################
