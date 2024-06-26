@@ -2,10 +2,13 @@ cmake_minimum_required (VERSION 3.10)
 project ("cc_ublox_cc_tools_qt_plugin")
 
 # Build options:
+option (OPT_WARN_AS_ERR "Treat warnings as errors" ON)
+option (OPT_USE_CCACHE "Use ccache" OFF)
 option (OPT_INSTALL_DEFAULT_CONFIG "Install default plugin configuration" ON)
 
 # Configuration variables:
 # OPT_QT_MAJOR_VERSION - The major Qt version, defaults to 5
+# OPT_CCACHE_EXECUTABLE - Custom ccache executable
 
 ######################################################################
 
@@ -30,8 +33,20 @@ set (CMAKE_AUTOMOC ON)
 set (CMAKE_AUTOUIC ON)
 set (CMAKE_AUTORCC ON)
 
+set (extra_opts)
+if (OPT_WARN_AS_ERR)
+    list(APPEND extra_opts WARN_AS_ERR)
+endif()
+
+if (OPT_USE_CCACHE)
+    list(APPEND extra_opts USE_CCACHE)
+    if (NOT "${OPT_CCACHE_EXECUTABLE}" STREQUAL "")
+        list(APPEND extra_opts CCACHE_EXECUTABLE "${OPT_CCACHE_EXECUTABLE}")
+    endif()
+endif()
+
 include(${LibComms_DIR}/CC_Compile.cmake)
-cc_compile(WARN_AS_ERR)
+cc_compile(${extra_opts})
 cc_msvc_force_warn_opt(/W4)
 
 include(GNUInstallDirs)
@@ -416,6 +431,7 @@ function (cc_plugin_core)
         cc_tools_qt_plugin/cc_ublox/message/RxmImes.cpp
         cc_tools_qt_plugin/cc_ublox/message/RxmImesPoll.cpp
         cc_tools_qt_plugin/cc_ublox/message/RxmMeasx.cpp
+        cc_tools_qt_plugin/cc_ublox/message/RxmMeasxPoll.cpp
         cc_tools_qt_plugin/cc_ublox/message/RxmPmreq.cpp
         cc_tools_qt_plugin/cc_ublox/message/RxmPmreqV0.cpp
         cc_tools_qt_plugin/cc_ublox/message/RxmRaw.cpp
