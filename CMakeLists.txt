@@ -4,6 +4,7 @@ project ("cc_ublox_cc_tools_qt_plugin")
 # Build options:
 option (OPT_WARN_AS_ERR "Treat warnings as errors" ON)
 option (OPT_USE_CCACHE "Use ccache" OFF)
+option (OPT_WITH_DEFAULT_SANITIZERS "Build with sanitizers" OFF)
 option (OPT_INSTALL_DEFAULT_CONFIG "Install default plugin configuration" ON)
 
 # Configuration variables:
@@ -43,6 +44,10 @@ if (OPT_USE_CCACHE)
     if (NOT "${OPT_CCACHE_EXECUTABLE}" STREQUAL "")
         list(APPEND extra_opts CCACHE_EXECUTABLE "${OPT_CCACHE_EXECUTABLE}")
     endif()
+endif()
+
+if (OPT_WITH_DEFAULT_SANITIZERS)
+    list(APPEND extra_opts DEFAULT_SANITIZERS)
 endif()
 
 include(${LibComms_DIR}/CC_Compile.cmake)
