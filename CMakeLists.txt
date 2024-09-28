@@ -486,7 +486,7 @@ function (cc_plugin_core)
     target_compile_options(${name} PRIVATE
         $<$<CXX_COMPILER_ID:MSVC>:/bigobj /wd4127 /wd5054>
         $<$<CXX_COMPILER_ID:GNU>:-ftemplate-depth=2048 -fconstexpr-depth=4096 -Wno-unused-local-typedefs>
-        $<$<CXX_COMPILER_ID:Clang>:-ftemplate-depth=2048 -fconstexpr-depth=4096 -Wno-unused-local-typedefs>
+        $<$<CXX_COMPILER_ID:Clang>:-ftemplate-depth=2048 -fconstexpr-depth=4096 -fbracket-depth=2048 -Wno-unused-local-typedefs>
     )
 
 endfunction()
@@ -531,7 +531,7 @@ function (cc_plugin protocol has_config_widget)
     target_compile_options(${name} PRIVATE
         $<$<CXX_COMPILER_ID:MSVC>:/bigobj /wd4127 /wd5054>
         $<$<CXX_COMPILER_ID:GNU>:-ftemplate-depth=2048 -fconstexpr-depth=4096>
-        $<$<CXX_COMPILER_ID:Clang>:-ftemplate-depth=2048 -fconstexpr-depth=4096>
+        $<$<CXX_COMPILER_ID:Clang>:-ftemplate-depth=2048 -fconstexpr-depth=4096 -fbracket-depth=2048>
     )
 
     install (
