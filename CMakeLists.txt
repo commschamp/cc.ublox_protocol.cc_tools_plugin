@@ -422,7 +422,8 @@ function (cc_plugin protocol interface)
     )
 
     set(extra_link_opts)
-    if ((CMAKE_COMPILER_IS_GNUCC) OR ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang"))
+    if ((NOT OPT_WITH_DEFAULT_SANITIZERS) AND
+        ((CMAKE_COMPILER_IS_GNUCC) OR ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")))
         set(extra_link_opts "-Wl,--no-undefined")
     endif ()
 
