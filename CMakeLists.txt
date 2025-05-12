@@ -379,9 +379,9 @@ function (cc_plugin_Message)
         cc_tools_qt_plugin/Message/cc_ublox/message/UpdSosCreate.cpp
         cc_tools_qt_plugin/Message/cc_ublox/message/UpdSosPoll.cpp
         cc_tools_qt_plugin/Message/cc_ublox/message/UpdSosRestored.cpp
+        cc_tools_qt_plugin/Message/cc_ublox/factory/MsgFactory.cpp
         cc_tools_qt_plugin/Message/cc_ublox/frame/UbloxFrameTransportMessage.cpp
         cc_tools_qt_plugin/Message/cc_ublox/frame/UbloxFrame.cpp
-        cc_tools_qt_plugin/Message/cc_ublox/factory/MsgFactory.cpp
     )
 
     add_library (${name} STATIC ${src})
