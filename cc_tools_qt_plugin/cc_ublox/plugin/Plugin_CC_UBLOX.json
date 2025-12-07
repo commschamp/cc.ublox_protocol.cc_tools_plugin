@@ -3,5 +3,6 @@
     "desc" : [
         "UBX protocol used by the U-blox GNSS Receivers."
     ],
+    "version": "v3.0.4",
     "type" : "protocol"
 }
