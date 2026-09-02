@@ -54,6 +54,10 @@ include(${LibComms_DIR}/CC_Compile.cmake)
 cc_compile(${extra_opts})
 cc_msvc_force_warn_opt(/W4)
 
+if(CMAKE_COMPILER_IS_GNUCC AND (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 15) AND (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16))
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=free-nonheap-object")
+endif()
+
 include(GNUInstallDirs)
 
 set (INTERFACE_LIB_PREFIX "cc_tools_qt_plugin_cc_ublox")
